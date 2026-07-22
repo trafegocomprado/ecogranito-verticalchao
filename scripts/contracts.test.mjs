@@ -80,6 +80,14 @@ test('builds a private WhatsApp form without sending personal data to analytics'
   }
 });
 
+test('does not steal focus when the first-visit consent banner appears', async () => {
+  const script = await read('script.js');
+
+  assert.match(script, /showBanner\(\{\s*focus:\s*false\s*\}\)/);
+  assert.match(script, /showBanner\(\{\s*focus:\s*true\s*\}\)/);
+  assert.ok(script.includes("document.querySelector('#conteudo')"), 'dismissal needs a meaningful focus fallback');
+});
+
 test('exposes a complete production artifact contract', async () => {
   const buildRaw = await read('build.json');
   assert.ok(buildRaw, 'build.json is required');

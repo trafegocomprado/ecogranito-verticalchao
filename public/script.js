@@ -113,15 +113,16 @@
   const storeConsent = (value) => {
     try { localStorage.setItem(CONSENT_KEY, value); } catch (_) {}
   };
-  const showBanner = () => {
+  const showBanner = ({ focus = true } = {}) => {
     if (!banner) return;
     banner.hidden = false;
-    window.setTimeout(() => accept?.focus(), 0);
+    if (focus) window.setTimeout(() => accept?.focus(), 0);
   };
   const hideBanner = () => {
     if (!banner) return;
     banner.hidden = true;
-    if (returnFocus) returnFocus.focus();
+    const focusTarget = returnFocus || document.querySelector('#conteudo');
+    focusTarget?.focus({ preventScroll: true });
     returnFocus = null;
   };
   const updateConsent = (decision) => {
@@ -141,7 +142,7 @@
   reject?.addEventListener('click', () => updateConsent('denied'));
   managers.forEach((button) => button.addEventListener('click', () => {
     returnFocus = button;
-    showBanner();
+    showBanner({ focus: true });
   }));
-  if (!readConsent()) showBanner();
+  if (!readConsent()) showBanner({ focus: false });
 })();
