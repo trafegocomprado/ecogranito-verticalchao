@@ -129,6 +129,7 @@ test('documents a GitHub-first Cloudflare Pages package', async () => {
   const sitemap = await read('sitemap.xml');
 
   assert.match(readme, /Cloudflare Pages/i);
+  assert.match(readme, /Build command:\s*`npm run build`/i);
   assert.match(readme, /Build output directory:\s*`public`/i);
   assert.match(redirects, /\/\*\s+\/index\.html\s+200/);
   assert.match(headers, /Cache-Control:\s*public,\s*max-age=86400,\s*must-revalidate/i);
@@ -137,5 +138,6 @@ test('documents a GitHub-first Cloudflare Pages package', async () => {
   assert.ok(manifestRaw, 'package-manifest.json is required');
   const manifest = JSON.parse(manifestRaw);
   assert.equal(manifest.cloudflare.build_output_directory, 'public');
+  assert.equal(manifest.cloudflare.build_command, 'npm run build');
   assert.equal(manifest.cloudflare.root_directory, '/');
 });

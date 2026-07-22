@@ -29,7 +29,7 @@ git push -u origin main
 Conecte o repositório do GitHub com estas opções:
 
 - Framework preset: None / Static HTML
-- Build command: deixe em branco
+- Build command: `npm run build`
 - Build output directory: `public`
 - Root directory: `/`
 - Production branch: `main`

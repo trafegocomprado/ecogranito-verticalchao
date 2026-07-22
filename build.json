@@ -98,7 +98,7 @@
     "public_dir": "public",
     "ready_for_github": true,
     "cloudflare": {
-      "build_command": "",
+      "build_command": "npm run build",
       "build_output_directory": "public",
       "root_directory": "/",
       "git_integration": true
