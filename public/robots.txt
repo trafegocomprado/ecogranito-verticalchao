@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://ecogranito-verticalchao.pages.dev/sitemap.xml

@@ -1,0 +1,29 @@
+{
+  "product": "Ecogranito Vertical Chão",
+  "paradigm": "mainstream",
+  "implementation_mode": "static-html",
+  "experience_tier": "vanilla-mainstream",
+  "premium_preset": null,
+  "reference_contract": {
+    "status": "valid",
+    "reference_urls": [
+      "https://ecogranito.verticalchao.com.br/",
+      "https://verticalchao-institucional.pages.dev/",
+      "https://pinturadefachadas-verticalchao.pages.dev/"
+    ],
+    "decision_vs_refs": "hybridize"
+  },
+  "source_build_dir": "dist",
+  "github_package_dir": ".",
+  "cloudflare": {
+    "build_command": "",
+    "build_output_directory": "public",
+    "root_directory": "/",
+    "recommended_project_name": "ecogranito-verticalchao"
+  },
+  "generated_at": "2026-07-22T00:00:00-03:00",
+  "notes": [
+    "Os IDs de tracking foram preservados da página original.",
+    "O consentimento e os eventos foram modernizados sem trocar contas ou container."
+  ]
+}

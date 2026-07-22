@@ -1,0 +1,91 @@
+{
+  "product": "Ecogranito Vertical Chão",
+  "paradigm": "mainstream",
+  "ticket": "servico-local",
+  "template": "Serviço Local",
+  "experience_tier": "vanilla-mainstream",
+  "implementation_mode": "static-html",
+  "build_profile_source": "frontend-design",
+  "premium_preset": null,
+  "context_pack": "local-services",
+  "mobile_menu": false,
+  "canonical_url": "https://ecogranito-verticalchao.pages.dev/",
+  "tracking": {
+    "gtm": "GTM-M7GS29F",
+    "ga4": "G-L2NNH9T18X",
+    "google_ads": "AW-956995439"
+  },
+  "tracking_implementation": {
+    "consent_mode_v2": true,
+    "default": "denied",
+    "revisable": true,
+    "duplicate_loaders": false,
+    "pii_in_data_layer": false
+  },
+  "contacts": {
+    "commercial": "+5531996848477",
+    "secondary": "+5531987122106"
+  },
+  "reference_contract": {
+    "status": "valid",
+    "source": "frontend-design",
+    "niche": "serviços prediais locais",
+    "paradigm": "mainstream",
+    "ticket": "servico-local",
+    "reference_urls": [
+      "https://ecogranito.verticalchao.com.br/",
+      "https://verticalchao-institucional.pages.dev/",
+      "https://pinturadefachadas-verticalchao.pages.dev/"
+    ],
+    "decision_vs_refs": "hybridize",
+    "borrowed_patterns": [
+      "conteúdo, ativos e IDs da página Ecogranito original",
+      "sistema visual grafite, vermelho e papel da página institucional",
+      "formulário, consentimento e comportamento responsivo da página de pintura"
+    ],
+    "avoided_patterns": [
+      "menu sanduíche",
+      "galeria alta em telas móveis",
+      "contadores sem fonte verificável",
+      "duplicação de loaders de tracking"
+    ],
+    "visual_fidelity_targets": [
+      "header escuro e direto sem navegação móvel substituta",
+      "hero editorial com contraste institucional",
+      "galeria 4:3 compacta em até 680 px",
+      "CTA comercial visível no primeiro fold"
+    ],
+    "waiver_reason": null
+  },
+  "source_assets": [
+    "https://ecogranito.verticalchao.com.br/wp-content/uploads/2023/02/e12-1-577x1024.jpg",
+    "https://ecogranito.verticalchao.com.br/wp-content/uploads/2023/02/e9-1-577x1024.jpg",
+    "https://ecogranito.verticalchao.com.br/wp-content/uploads/2023/02/e3-1-577x1024.jpg"
+  ],
+  "copy_gates": {
+    "anti_ai_writing": "../../../analysis/anti-ai-report.md",
+    "text_editor_br": "../../../analysis/text-editor-analysis.json",
+    "text_editor_score": 100,
+    "text_editor_grade": "A",
+    "findings": 0
+  },
+  "quality_scores": {
+    "design_review": null,
+    "qa": null,
+    "anti_ai_writing": 100,
+    "brand_audit": null
+  },
+  "deployment_package": {
+    "type": "github-cloudflare-pages",
+    "path": ".",
+    "public_dir": "public",
+    "ready_for_github": true,
+    "cloudflare": {
+      "build_command": "",
+      "build_output_directory": "public",
+      "root_directory": "/",
+      "git_integration": true
+    }
+  },
+  "warnings": []
+}
