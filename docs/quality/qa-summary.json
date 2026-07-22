@@ -1,0 +1,181 @@
+{
+  "initialConsentVisible": true,
+  "desktop": {
+    "viewport": [
+      1280,
+      900
+    ],
+    "bodyWidth": 1280,
+    "hamburgerCount": 0,
+    "h1Count": 1,
+    "figureCount": 3,
+    "missingAlt": 0,
+    "brokenImages": [],
+    "landmarks": {
+      "main": 1,
+      "nav": 1,
+      "header": 1,
+      "footer": 1
+    },
+    "headings": [
+      {
+        "tag": "H1",
+        "text": "Um novo acabamento começa pelo cuidado com a base."
+      },
+      {
+        "tag": "H2",
+        "text": "Avaliação da fachada"
+      },
+      {
+        "tag": "H2",
+        "text": "Preparo da base"
+      },
+      {
+        "tag": "H2",
+        "text": "Trabalho em altura"
+      },
+      {
+        "tag": "H2",
+        "text": "Acompanhamento"
+      },
+      {
+        "tag": "H2",
+        "text": "Ecogranito bem aplicado depende do que existe por baixo."
+      },
+      {
+        "tag": "H2",
+        "text": "Quatro etapas para organizar a aplicação."
+      },
+      {
+        "tag": "H3",
+        "text": "Vistoria"
+      },
+      {
+        "tag": "H3",
+        "text": "Definição do escopo"
+      },
+      {
+        "tag": "H3",
+        "text": "Preparo e aplicação"
+      },
+      {
+        "tag": "H3",
+        "text": "Inspeção"
+      },
+      {
+        "tag": "H2",
+        "text": "Detalhes do revestimento em obra."
+      },
+      {
+        "tag": "H2",
+        "text": "Relatos sobre a condução das obras."
+      },
+      {
+        "tag": "H2",
+        "text": "Outros serviços para conservar o edifício."
+      },
+      {
+        "tag": "H3",
+        "text": "Limpeza de fachadas"
+      },
+      {
+        "tag": "H3",
+        "text": "Reposição de pastilhas"
+      },
+      {
+        "tag": "H3",
+        "text": "Pintura de fachadas"
+      },
+      {
+        "tag": "H2",
+        "text": "Conte o que precisa ser avaliado."
+      },
+      {
+        "tag": "H2",
+        "text": "Endereço"
+      },
+      {
+        "tag": "H2",
+        "text": "Telefones"
+      },
+      {
+        "tag": "H2",
+        "text": "Atalhos"
+      },
+      {
+        "tag": "H2",
+        "text": "Sua escolha de privacidade"
+      }
+    ],
+    "unnamedButtons": 0,
+    "consoleErrors": [],
+    "failedLocal": []
+  },
+  "mobile": {
+    "viewport": [
+      390,
+      844
+    ],
+    "bodyWidth": 390,
+    "hamburgerCount": 0,
+    "galleryHeights": [
+      273,
+      273,
+      273
+    ],
+    "mobileNavVisible": false,
+    "undersized24": [],
+    "undersized44": [
+      {
+        "tag": "A",
+        "text": "Obras",
+        "w": 36,
+        "h": 44
+      }
+    ],
+    "consoleErrors": [],
+    "failedLocal": []
+  },
+  "mobileFold": {
+    "top": 525,
+    "bottom": 577,
+    "visible": true
+  },
+  "formEmpty": {
+    "errorCount": 4,
+    "focused": "nome"
+  },
+  "formInvalid": {
+    "emailError": "Confira o endereço de e-mail.",
+    "focused": "email"
+  },
+  "formValid": {
+    "openedUrl": "https://api.whatsapp.com/send?phone=5531996848477&text=Ol%C3%A1%2C%20preciso%20de%20um%20atendimento!%0ANome%3A%20Marcos%20Almeida%0ATelefone%3A%20(31)%2099999-0000%0AE-mail%3A%20marcos%40example.com%0AAssunto%3A%20Aplica%C3%A7%C3%A3o%20de%20Ecogranito%0AMensagem%3A%20Quero%20avaliar%20a%20fachada%20de%20um%20condom%C3%ADnio%20residencial.",
+    "status": "O navegador bloqueou a nova aba. Use o link abaixo para continuar.",
+    "fallbackVisible": true,
+    "event": {
+      "event": "form_submitted",
+      "form_name": "ecogranito_orcamento",
+      "contact_method": "whatsapp",
+      "gtm.uniqueEventId": 33
+    },
+    "piiKeys": []
+  },
+  "consentAccepted": {
+    "stored": "granted",
+    "bannerHidden": true
+  },
+  "consentManage": {
+    "bannerVisible": true,
+    "focused": true
+  },
+  "consentRejected": {
+    "stored": "denied",
+    "bannerHidden": true,
+    "focusReturned": true
+  },
+  "consentReload": {
+    "bannerVisible": false
+  },
+  "referenceCaptured": true
+}

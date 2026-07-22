@@ -63,17 +63,34 @@
     "https://ecogranito.verticalchao.com.br/wp-content/uploads/2023/02/e3-1-577x1024.jpg"
   ],
   "copy_gates": {
-    "anti_ai_writing": "../../../analysis/anti-ai-report.md",
-    "text_editor_br": "../../../analysis/text-editor-analysis.json",
+    "anti_ai_writing": "docs/quality/anti-ai-report.md",
+    "text_editor_br": "docs/quality/text-editor-analysis.json",
     "text_editor_score": 100,
     "text_editor_grade": "A",
     "findings": 0
   },
   "quality_scores": {
-    "design_review": null,
-    "qa": null,
+    "design_review": 92,
+    "qa": 100,
+    "accessibility": 100,
     "anti_ai_writing": 100,
     "brand_audit": null
+  },
+  "verification": {
+    "contract_tests": 7,
+    "contract_failures": 0,
+    "desktop_viewport": "1280x900",
+    "mobile_viewport": "390x844",
+    "mobile_gallery_heights_px": [273, 273, 273],
+    "mobile_cta_above_fold": true,
+    "anti_widow_flags": {
+      "desktop": 0,
+      "mobile": 0
+    },
+    "broken_local_assets": 0,
+    "console_errors": 0,
+    "tracking_pii_keys": 0,
+    "qa_summary": "docs/quality/qa-summary.json"
   },
   "deployment_package": {
     "type": "github-cloudflare-pages",
@@ -87,5 +104,7 @@
       "git_integration": true
     }
   },
-  "warnings": []
+  "warnings": [
+    "Atualize canonical, og:url, robots.txt e sitemap.xml quando o domínio personalizado for definido."
+  ]
 }

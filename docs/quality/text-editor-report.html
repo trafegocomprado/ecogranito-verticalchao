@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Text Editor BR v1.3 — Relatório</title>
+<style>
+:root {--bg:#0f1117;--surface:#1a1d27;--surface2:#242836;--border:#2e3345;--text:#e4e4e7;--text-muted:#9ca3af;--accent:#818cf8;--red:#ef4444;--yellow:#eab308;--green:#22c55e;--blue:#60a5fa;--purple:#a78bfa;--orange:#f97316;--teal:#2dd4bf;--pink:#f472b6;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Inter',-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.7;padding:2rem;}
+.container{max-width:960px;margin:0 auto;}
+.header{text-align:center;margin-bottom:2.5rem;padding-bottom:1.5rem;border-bottom:1px solid var(--border);}
+.header h1{font-size:1.5rem;font-weight:700;letter-spacing:-0.02em;margin-bottom:0.25rem;}
+.header .subtitle{color:var(--text-muted);font-size:0.85rem;}
+.score-hero{display:flex;gap:2rem;align-items:center;justify-content:center;margin-bottom:2.5rem;flex-wrap:wrap;}
+.score-circle{width:120px;height:120px;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;border:4px solid #22c55e;background:#22c55e15;}
+.score-circle .number{font-size:2.5rem;font-weight:800;color:#22c55e;line-height:1;}
+.score-circle .label{font-size:0.7rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.05em;}
+.score-details{display:grid;grid-template-columns:1fr 1fr;gap:0.75rem 2rem;}
+.score-detail{display:flex;flex-direction:column;}
+.score-detail .val{font-size:1.25rem;font-weight:700;}
+.score-detail .lbl{font-size:0.75rem;color:var(--text-muted);}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.5rem;margin-bottom:1.5rem;}
+.card h2{font-size:0.8rem;font-weight:600;margin-bottom:1rem;color:var(--accent);text-transform:uppercase;letter-spacing:0.05em;}
+.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:1rem;}
+.stat-item{background:var(--surface2);padding:1rem;border-radius:8px;text-align:center;}
+.stat-item .num{font-size:1.5rem;font-weight:700;}
+.stat-item .txt{font-size:0.75rem;color:var(--text-muted);margin-top:0.25rem;}
+.goal-row{display:flex;align-items:center;gap:1rem;padding:0.75rem 0;border-bottom:1px solid var(--border);}
+.goal-row:last-child{border-bottom:none;}
+.goal-bar{flex:1;height:8px;background:var(--surface2);border-radius:4px;overflow:hidden;}
+.goal-fill{height:100%;border-radius:4px;}
+.goal-label{font-size:0.85rem;min-width:140px;}
+.goal-count{font-size:0.85rem;min-width:60px;text-align:right;color:var(--text-muted);}
+.legend{display:flex;flex-wrap:wrap;gap:1rem;margin-bottom:1rem;}
+.legend-item{display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:var(--text-muted);}
+.legend-swatch{width:14px;height:14px;border-radius:3px;flex-shrink:0;}
+.text-display{font-family:'Georgia',serif;font-size:1.05rem;line-height:1.9;color:var(--text);}
+.text-display p{margin-bottom:1rem;}
+.hl-sentence-red{background:rgba(239,68,68,0.2);border-radius:3px;padding:1px 0;}
+.hl-sentence-yellow{background:rgba(234,179,8,0.15);border-radius:3px;padding:1px 0;}
+.hl-green{background:rgba(34,197,94,0.25);border-bottom:2px solid var(--green);border-radius:2px;padding:0 2px;cursor:help;}
+.hl-blue{background:rgba(96,165,250,0.25);border-bottom:2px solid var(--blue);border-radius:2px;padding:0 2px;cursor:help;}
+.hl-purple{background:rgba(167,139,250,0.25);border-bottom:2px solid var(--purple);border-radius:2px;padding:0 2px;cursor:help;}
+.hl-orange{background:rgba(249,115,22,0.25);border-bottom:2px solid var(--orange);border-radius:2px;padding:0 2px;cursor:help;}
+.hl-teal{background:rgba(45,212,191,0.25);border-bottom:2px solid var(--teal);border-radius:2px;padding:0 2px;cursor:help;}
+.hl-pink{background:rgba(244,114,182,0.25);border-bottom:2px solid var(--pink);border-radius:2px;padding:0 2px;cursor:help;}
+table{width:100%;border-collapse:collapse;font-size:0.85rem;}
+th{text-align:left;padding:0.5rem;border-bottom:2px solid var(--border);color:var(--text-muted);font-weight:600;font-size:0.75rem;text-transform:uppercase;}
+td{padding:0.5rem;border-bottom:1px solid var(--border);vertical-align:top;}
+td code{background:var(--surface2);padding:2px 6px;border-radius:4px;font-size:0.8rem;}
+.dot{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:4px;}
+.dot-red{background:var(--red);}
+.dot-yellow{background:var(--yellow);}
+.dot-green{background:var(--green);}
+.dot-blue{background:var(--blue);}
+.dot-purple{background:var(--purple);}
+.dot-orange{background:var(--orange);}
+.dot-teal{background:var(--teal);}
+.dot-pink{background:var(--pink);}
+.action-item{padding:0.75rem 0;border-bottom:1px solid var(--border);line-height:1.5;}
+.action-item:last-child{border-bottom:none;}
+.action-badge{display:inline-block;padding:2px 8px;border-radius:4px;font-size:0.7rem;font-weight:700;text-transform:uppercase;margin-right:8px;letter-spacing:0.05em;}
+.badge-orange{background:rgba(249,115,22,0.2);color:var(--orange);}
+.badge-red{background:rgba(239,68,68,0.2);color:var(--red);}
+.badge-yellow{background:rgba(234,179,8,0.2);color:var(--yellow);}
+.badge-green{background:rgba(34,197,94,0.2);color:var(--green);}
+.badge-blue{background:rgba(96,165,250,0.2);color:var(--blue);}
+.badge-purple{background:rgba(167,139,250,0.2);color:var(--purple);}
+.badge-teal{background:rgba(45,212,191,0.2);color:var(--teal);}
+.badge-pink{background:rgba(244,114,182,0.2);color:var(--pink);}
+.summary-ok{color:var(--green);font-weight:600;padding:1rem 0;}
+.ai-cats{display:flex;flex-direction:column;gap:0.5rem;}
+.ai-cat-row{display:flex;justify-content:space-between;padding:0.5rem;background:var(--surface2);border-radius:6px;}
+.ai-cat-label{color:var(--orange);font-weight:500;}
+.ai-cat-count{font-weight:700;}
+.ai-note{margin-top:1rem;font-size:0.8rem;color:var(--text-muted);font-style:italic;}
+.comp-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;}
+.comp-metric{background:var(--surface2);padding:1rem;border-radius:8px;display:flex;align-items:center;gap:0.5rem;flex-wrap:wrap;}
+.comp-label{font-size:0.75rem;color:var(--text-muted);width:100%;margin-bottom:0.25rem;}
+.comp-before,.comp-after{font-size:1.25rem;font-weight:700;}
+.comp-arrow{color:var(--text-muted);}
+.delta-up{color:var(--green);font-size:0.85rem;font-weight:600;}
+.delta-down{color:var(--red);font-size:0.85rem;font-weight:600;}
+.delta-neutral{color:var(--text-muted);font-size:0.85rem;}
+.comp-verdict{margin-top:1rem;padding:0.75rem;border-radius:8px;text-align:center;font-size:0.9rem;}
+.comp-improved{background:rgba(34,197,94,0.1);color:var(--green);}
+.comp-regressed{background:rgba(239,68,68,0.1);color:var(--red);}
+.footer{text-align:center;padding-top:2rem;margin-top:2rem;border-top:1px solid var(--border);color:var(--text-muted);font-size:0.75rem;}
+@media(max-width:600px){body{padding:1rem;}.score-hero{flex-direction:column;}.score-details{grid-template-columns:1fr;}.stats-grid{grid-template-columns:1fr 1fr;}}
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <h1>📝 Text Editor BR <sup style="font-size:0.5em;color:var(--text-muted)">v1.3</sup></h1>
+    <div class="subtitle">Relatório de Legibilidade · Landing page · 22/07/2026 18:26</div>
+  </div>
+
+  
+
+  <div class="score-hero">
+    <div class="score-circle">
+      <span class="number">100</span>
+      <span class="label">Score</span>
+    </div>
+    <div class="score-details">
+      <div class="score-detail"><span class="val" style="color:#22c55e">A</span><span class="lbl">Grade</span></div>
+      <div class="score-detail"><span class="val">33.2</span><span class="lbl">Flesch PT-BR (Difícil)</span></div>
+      <div class="score-detail"><span class="val">8.2</span><span class="lbl">Palavras / frase</span></div>
+      <div class="score-detail"><span class="val">48.0%</span><span class="lbl">Burstiness (Alto ✓)</span></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>🎯 Ações prioritárias</h2>
+    <div class="summary-ok">✅ Texto limpo — nenhuma ação necessária.</div>
+  </div>
+
+  <div class="card">
+    <h2>Estatísticas</h2>
+    <div class="stats-grid">
+      <div class="stat-item"><div class="num">444</div><div class="txt">Palavras</div></div>
+      <div class="stat-item"><div class="num">54</div><div class="txt">Frases</div></div>
+      <div class="stat-item"><div class="num">25</div><div class="txt">Parágrafos</div></div>
+      <div class="stat-item"><div class="num">2min</div><div class="txt">Tempo de leitura</div></div>
+      <div class="stat-item"><div class="num">0</div><div class="txt">Issues</div></div>
+      <div class="stat-item"><div class="num">5.2</div><div class="txt">Chars / palavra</div></div>
+      <div class="stat-item"><div class="num">7.2</div><div class="txt">ARI (secundário)</div></div>
+    </div>
+  </div>
+
+  <div class="card"><h2>Metas de qualidade</h2>
+    <div class="goal-row">
+      <span class="goal-label">Advérbios</span>
+      <div class="goal-bar"><div class="goal-fill" style="width: 0%; background: #22c55e;"></div></div>
+      <span class="goal-count">0 / 3</span>
+    </div>
+    <div class="goal-row">
+      <span class="goal-label">Voz passiva</span>
+      <div class="goal-bar"><div class="goal-fill" style="width: 0%; background: #22c55e;"></div></div>
+      <span class="goal-count">0 / 5</span>
+    </div>
+    <div class="goal-row">
+      <span class="goal-label">Frases complexas</span>
+      <div class="goal-bar"><div class="goal-fill" style="width: 0%; background: #22c55e;"></div></div>
+      <span class="goal-count">0 / 8</span>
+    </div>
+    <div class="goal-row">
+      <span class="goal-label">Padrões de IA</span>
+      <div class="goal-bar"><div class="goal-fill" style="width: 0%; background: #22c55e;"></div></div>
+      <span class="goal-count">0 / 0</span>
+    </div>
+    <div class="goal-row">
+      <span class="goal-label">Vícios PT-BR</span>
+      <div class="goal-bar"><div class="goal-fill" style="width: 0%; background: #22c55e;"></div></div>
+      <span class="goal-count">0 / 0</span>
+    </div>
+    <div class="goal-row">
+      <span class="goal-label">Estrutura</span>
+      <div class="goal-bar"><div class="goal-fill" style="width: 0%; background: #22c55e;"></div></div>
+      <span class="goal-count">0 / 5</span>
+    </div></div>
+
+  
+
+  <div class="card">
+    <h2>Texto com highlights</h2>
+    <div class="legend">
+      <div class="legend-item"><div class="legend-swatch" style="background:rgba(239,68,68,0.3)"></div> Muito difícil</div>
+      <div class="legend-item"><div class="legend-swatch" style="background:rgba(234,179,8,0.25)"></div> Difícil</div>
+      <div class="legend-item"><div class="legend-swatch" style="background:rgba(249,115,22,0.35)"></div> Padrão de IA</div>
+      <div class="legend-item"><div class="legend-swatch" style="background:rgba(167,139,250,0.35)"></div> Rebuscada</div>
+      <div class="legend-item"><div class="legend-swatch" style="background:rgba(96,165,250,0.35)"></div> Advérbio</div>
+      <div class="legend-item"><div class="legend-swatch" style="background:rgba(34,197,94,0.35)"></div> Passiva</div>
+      <div class="legend-item"><div class="legend-swatch" style="background:rgba(45,212,191,0.35)"></div> Vício PT-BR</div>
+      <div class="legend-item"><div class="legend-swatch" style="background:rgba(244,114,182,0.35)"></div> Estrutura</div>
+    </div>
+    <div class="text-display"><p>Um novo acabamento começa pelo cuidado com a base.</p><p>&nbsp;</p><p>A Vertical Chão avalia a fachada e prepara a superfície. Depois, aplica o Ecogranito em condomínios e edifícios. A equipe trabalha em altura e acompanha a obra da vistoria à inspeção final.</p><p>&nbsp;</p><p>Avaliação da fachada.</p><p>A vistoria verifica o estado da superfície antes da definição do serviço.</p><p>&nbsp;</p><p>Preparo da base.</p><p>Limpeza e correções entram no escopo de acordo com o que a vistoria encontrar.</p><p>&nbsp;</p><p>Trabalho em altura.</p><p>A execução considera o acesso à fachada e as medidas de segurança da obra.</p><p>&nbsp;</p><p>Acompanhamento.</p><p>O condomínio recebe orientação sobre as etapas e o andamento do serviço.</p><p>&nbsp;</p><p>Ecogranito bem aplicado depende do que existe por baixo.</p><p>&nbsp;</p><p>O Ecogranito dá à fachada um acabamento de aparência mineral. A variedade visual, a resistência e o custo-benefício orientam a escolha do produto.</p><p>&nbsp;</p><p>Antes da aplicação, a equipe precisa entender as condições da parede. Fissuras, partes soltas, umidade e desníveis podem exigir correção. O preparo melhora a base e reduz surpresas durante a obra.</p><p>&nbsp;</p><p>Cada edifício pede uma vistoria própria. O orçamento parte das medidas, do acesso e do estado real da fachada.</p><p>&nbsp;</p><p>Quatro etapas para organizar a aplicação.</p><p>&nbsp;</p><p>Vistoria.</p><p>A equipe observa a superfície, o acesso e as áreas de intervenção. Também registra as condições que afetam o trabalho.</p><p>&nbsp;</p><p>Definição do escopo.</p><p>O levantamento orienta materiais, preparo, proteções e sequência de trabalho. O condomínio sabe o que entra no orçamento.</p><p>&nbsp;</p><p>Preparo e aplicação.</p><p>A equipe corrige a base conforme o previsto. Depois, aplica o produto escolhido de acordo com as condições da obra.</p><p>&nbsp;</p><p>Inspeção.</p><p>A equipe confere o acabamento e apresenta o serviço ao responsável pelo edifício.</p><p>&nbsp;</p><p>Detalhes do revestimento em obra.</p><p>As imagens pertencem à página original da Vertical Chão. Elas mostram aplicações do material em fachadas.</p><p>&nbsp;</p><p>Relatos sobre a condução das obras.</p><p>Estes depoimentos vieram da página original. Os relatos tratam de serviços prediais e da condução das obras pela empresa.</p><p>&nbsp;</p><p>Outros serviços para conservar o edifício.</p><p>&nbsp;</p><p>Limpeza de fachadas.</p><p>Remoção de sujeira acumulada e tratamento compatível com a superfície avaliada.</p><p>&nbsp;</p><p>Reposição de pastilhas.</p><p>Mapeamento das áreas afetadas e recomposição do revestimento conforme o escopo aprovado.</p><p>&nbsp;</p><p>Pintura de fachadas.</p><p>Preparo da superfície e pintura de condomínios e edifícios com acesso por corda.</p><p>&nbsp;</p><p>Conte o que precisa ser avaliado.</p><p>Informe o tipo de edifício, a área aproximada e o estado atual da fachada. O formulário monta uma mensagem para o WhatsApp do atendimento comercial.</p><p>&nbsp;</p><p>Usamos cookies de medição e publicidade somente depois da sua autorização. Você pode mudar a escolha quando quiser.</p><p>&nbsp;</p><p>Sua escolha de privacidade.</p><p>Mantemos os dados de medição e publicidade desativados até você decidir.</p><p>&nbsp;</p><p>Aceitar libera esses recursos. Recusar mantém apenas o funcionamento necessário da página.</p></div>
+  </div>
+
+  
+
+  
+
+  <div class="footer">Text Editor BR v1.3 · Motor de análise para PT-BR inspirado no Hemingway Editor<br>Desenvolvido por MPX · Tráfego comPrado</div>
+</div>
+</body>
+</html>

@@ -36,6 +36,8 @@ Conecte o repositório do GitHub com estas opções:
 
 `public/` é o artefato publicado. Os arquivos na raiz são a fonte editável e `dist/` é usado para validação local.
 
+Depois de configurar o domínio personalizado, atualize a URL canônica e o `og:url` em `index.html`, além das URLs de `robots.txt` e `sitemap.xml`.
+
 ## Contatos e tracking
 
 - Comercial: `(31) 99684-8477`
