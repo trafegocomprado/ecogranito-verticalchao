@@ -108,10 +108,12 @@ test('documents a GitHub-first Cloudflare Pages package', async () => {
   const readme = await read('README.md');
   const manifestRaw = await read('package-manifest.json');
   const redirects = await read('_redirects');
+  const sitemap = await read('sitemap.xml');
 
   assert.match(readme, /Cloudflare Pages/i);
   assert.match(readme, /Build output directory:\s*`public`/i);
   assert.match(redirects, /\/\*\s+\/index\.html\s+200/);
+  assert.match(sitemap, /<loc>https:\/\/ecogranito-verticalchao\.pages\.dev\/<\/loc>/);
   assert.ok(manifestRaw, 'package-manifest.json is required');
   const manifest = JSON.parse(manifestRaw);
   assert.equal(manifest.cloudflare.build_output_directory, 'public');

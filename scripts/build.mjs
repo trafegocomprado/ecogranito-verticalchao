@@ -50,6 +50,7 @@ async function preflightSources() {
     ["styles.css", "file"],
     ["script.js", "file"],
     ["robots.txt", "file"],
+    ["sitemap.xml", "file"],
     ["_headers", "file"],
     ["_redirects", "file"],
     ["assets", "directory"],
