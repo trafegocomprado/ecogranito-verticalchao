@@ -10,11 +10,11 @@ Status: `valid`
 
 | Responsabilidade | URL | Uso autorizado |
 | --- | --- | --- |
-| Conteúdo, imagens, depoimentos, funcionalidades e tracking | https://ecogranito.verticalchao.com.br/ | Fonte primária e única do tracking; fonte de verdade do serviço |
+| Conteúdo, imagens, depoimentos, funcionalidades e IDs de tracking | https://ecogranito.verticalchao.com.br/ | Fonte primária e única dos IDs de tracking; fonte de verdade do serviço |
 | Sistema visual institucional | https://verticalchao-institucional.pages.dev/ | Paleta, tipografia, ritmo editorial, cabeçalho e acabamento |
 | Padrão técnico responsivo e de formulário | https://pinturadefachadas-verticalchao.pages.dev/ | Ausência de menu móvel, galeria compacta, consentimento e acessibilidade |
 
-O tracking não será herdado das outras landing pages. Os identificadores e scripts serão auditados novamente na página original de Ecogranito e registrados no `build.json`.
+O tracking não será herdado das outras landing pages. Os identificadores serão auditados novamente na página original de Ecogranito e registrados no `build.json`. A implementação poderá ser modernizada para melhorar consentimento, qualidade dos eventos e prevenção de duplicidade, sem trocar os IDs das contas ou do contêiner.
 
 ## Abordagem escolhida
 
@@ -69,7 +69,8 @@ Serão salvos a copy final e os relatórios de mudanças/legibilidade em `analys
 ## Tracking e privacidade
 
 - Auditar a página original imediatamente antes da implementação.
-- Reproduzir os contêineres/IDs existentes na origem. A inspeção inicial encontrou `GTM-M7GS29F`, `G-L2NNH9T18X` e `AW-956995439`; esses valores precisam ser confirmados no contrato automatizado.
+- Preservar obrigatoriamente os IDs encontrados na origem: Google Tag Manager `GTM-M7GS29F`, Google Analytics 4 `G-L2NNH9T18X` e Google Ads `AW-956995439`.
+- A organização dos loaders, do Consent Mode e dos eventos pode ser atualizada. A implementação final deve evitar pageviews ou conversões duplicadas e manter cada ID configurado uma única vez por mecanismo de carregamento.
 - Eventos próprios: `cta_clicked` e `form_submitted`.
 - Nunca enviar nome, telefone, e-mail ou mensagem ao `dataLayer`.
 - Google Consent Mode com armazenamento negado por padrão.
@@ -90,7 +91,7 @@ Campos: nome, telefone, e-mail opcional, assunto e mensagem. Validar no cliente,
 ## Tratamento de falhas
 
 - Build deve falhar se algum ativo local estiver ausente.
-- Validação deve falhar se os telefones antigos, Edvaldo, menu móvel, IDs de tracking divergentes ou dados pessoais no tracking aparecerem.
+- Validação deve falhar se os telefones antigos, Edvaldo, menu móvel, IDs de tracking divergentes, configurações duplicadas ou dados pessoais no tracking aparecerem.
 - Se o WhatsApp for bloqueado pelo navegador, manter mensagem de status clara no formulário.
 - Acesso ao `localStorage` deve ser protegido contra exceções.
 
