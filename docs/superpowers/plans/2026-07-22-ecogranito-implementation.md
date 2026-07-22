@@ -54,10 +54,10 @@ outputs/ecogranito-verticalchao/
 ### Task 1: Congelar a fonte, os IDs e o reference contract
 
 **Files:**
-- Create: `../../../research/source-contract.json`
-- Create: `../../../research/source-copy.txt`
-- Create: `../../prompt_ecogranito-verticalchao.md`
-- Create: `../../../analysis/copy-original.md`
+- Create: `D:/OpenAI-Codex/PageMind Skills/outputs/ecogranito-verticalchao/research/source-contract.json`
+- Create: `D:/OpenAI-Codex/PageMind Skills/outputs/ecogranito-verticalchao/research/source-copy.txt`
+- Create: `D:/OpenAI-Codex/PageMind Skills/outputs/ecogranito-verticalchao/lp/prompt_ecogranito-verticalchao.md`
+- Create: `D:/OpenAI-Codex/PageMind Skills/outputs/ecogranito-verticalchao/analysis/copy-original.md`
 
 - [ ] **Step 1: Reextrair os dados da página original**
 
@@ -120,7 +120,7 @@ status: valid
 Run:
 
 ```powershell
-$contract = Get-Content -Raw ..\..\..\research\source-contract.json | ConvertFrom-Json
+$contract = Get-Content -Raw 'D:\OpenAI-Codex\PageMind Skills\outputs\ecogranito-verticalchao\research\source-contract.json' | ConvertFrom-Json
 if ($contract.tracking.gtm -ne 'GTM-M7GS29F') { throw 'GTM divergente' }
 if ($contract.tracking.ga4 -ne 'G-L2NNH9T18X') { throw 'GA4 divergente' }
 if ($contract.tracking.google_ads -ne 'AW-956995439') { throw 'Ads divergente' }
@@ -138,11 +138,11 @@ Somente o prompt fica dentro do escopo de entrega PageMind fora do repositório;
 ### Task 2: Fechar a copy antes da build
 
 **Files:**
-- Create: `../../../analysis/copy-humanizada.md`
-- Create: `../../../analysis/anti-ai-report.md`
-- Create: `../../../analysis/text-editor-analysis.json`
-- Create: `../../../analysis/text-editor-report.html`
-- Create: `../../../analysis/copy-final.md`
+- Create: `D:/OpenAI-Codex/PageMind Skills/outputs/ecogranito-verticalchao/analysis/copy-humanizada.md`
+- Create: `D:/OpenAI-Codex/PageMind Skills/outputs/ecogranito-verticalchao/analysis/anti-ai-report.md`
+- Create: `D:/OpenAI-Codex/PageMind Skills/outputs/ecogranito-verticalchao/analysis/text-editor-analysis.json`
+- Create: `D:/OpenAI-Codex/PageMind Skills/outputs/ecogranito-verticalchao/analysis/text-editor-report.html`
+- Create: `D:/OpenAI-Codex/PageMind Skills/outputs/ecogranito-verticalchao/analysis/copy-final.md`
 
 - [ ] **Step 1: Ler o lexicon completo do anti-ai-writing**
 
@@ -163,8 +163,8 @@ Aplicar `anti-ai-writing` sobre `copy-original.md`. Manter o fluxo AIDA, fatos d
 Run:
 
 ```powershell
-python 'C:\Users\Marcilio\.codex\skills\text-editor-br\scripts\analyze.py' --input '..\..\..\analysis\copy-humanizada.md' --content-type lp --output '..\..\..\analysis\text-editor-analysis.json'
-python 'C:\Users\Marcilio\.codex\skills\text-editor-br\scripts\report.py' --json '..\..\..\analysis\text-editor-analysis.json' --output '..\..\..\analysis\text-editor-report.html'
+python 'C:\Users\Marcilio\.codex\skills\text-editor-br\scripts\analyze.py' --input 'D:\OpenAI-Codex\PageMind Skills\outputs\ecogranito-verticalchao\analysis\copy-humanizada.md' --content-type lp --output 'D:\OpenAI-Codex\PageMind Skills\outputs\ecogranito-verticalchao\analysis\text-editor-analysis.json'
+python 'C:\Users\Marcilio\.codex\skills\text-editor-br\scripts\report.py' --json 'D:\OpenAI-Codex\PageMind Skills\outputs\ecogranito-verticalchao\analysis\text-editor-analysis.json' --output 'D:\OpenAI-Codex\PageMind Skills\outputs\ecogranito-verticalchao\analysis\text-editor-report.html'
 ```
 
 Expected: JSON e HTML gerados; nenhum erro de execução.
@@ -178,7 +178,7 @@ Resolver frases muito difíceis, gerundismo, nominalização, parágrafos longos
 Run:
 
 ```powershell
-$copy = Get-Content -Raw '..\..\..\analysis\copy-final.md'
+$copy = Get-Content -Raw 'D:\OpenAI-Codex\PageMind Skills\outputs\ecogranito-verticalchao\analysis\copy-final.md'
 if ($copy -match 'Não é .+\. É ') { throw 'Paralelismo negativo encontrado' }
 if ($copy -match '\b(crucial|robusto|jornada|mergulhar|alavancar)\b') { throw 'Vocabulário artificial encontrado' }
 if ($copy -match '0\s*%|0\s*\+') { throw 'Contador quebrado encontrado' }
@@ -439,9 +439,9 @@ git commit -m "feat: add ecogranito form consent and conversion events"
 - Create: `README.md`
 - Create: `_headers`
 - Modify: `build.json`
-- Create: `../../../lp/qa/mobile.png`
-- Create: `../../../lp/qa/desktop.png`
-- Create: `../../../lp/qa/qa-summary.json`
+- Create: `D:/OpenAI-Codex/PageMind Skills/outputs/ecogranito-verticalchao/lp/qa/mobile.png`
+- Create: `D:/OpenAI-Codex/PageMind Skills/outputs/ecogranito-verticalchao/lp/qa/desktop.png`
+- Create: `D:/OpenAI-Codex/PageMind Skills/outputs/ecogranito-verticalchao/lp/qa/qa-summary.json`
 
 - [ ] **Step 1: Documentar build e publicação**
 
@@ -478,7 +478,7 @@ Testar skip link, primeiro erro, envio válido, consentimento aceitar → reabri
 
 - [ ] **Step 6: Atualizar evidências e copiar dist para lp/build**
 
-`qa-summary.json` e `build.json` devem registrar métricas reais. Copiar o conteúdo de `dist/` para `../../build/` e confirmar `../../build/index.html` e `../../build/build.json`.
+`qa-summary.json` e `build.json` devem registrar métricas reais. Copiar o conteúdo de `dist/` para `D:/OpenAI-Codex/PageMind Skills/outputs/ecogranito-verticalchao/lp/build/` e confirmar `index.html` e `build.json` nesse destino.
 
 - [ ] **Step 7: Commit**
 
