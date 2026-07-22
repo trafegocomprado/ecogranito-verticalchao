@@ -85,8 +85,10 @@
         form_name: 'ecogranito_orcamento',
         contact_method: 'whatsapp',
       });
-      const popup = window.open(url, '_blank', 'noopener');
+      const popup = window.open('', '_blank');
       if (popup) {
+        popup.opener = null;
+        popup.location.href = url;
         formStatus.textContent = 'O WhatsApp foi aberto em uma nova aba.';
         formFallback.hidden = true;
       } else {

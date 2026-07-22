@@ -74,10 +74,27 @@ test('builds a private WhatsApp form without sending personal data to analytics'
   assert.ok(html.includes('data-form-fallback'), 'form needs a fallback link when popups are blocked');
   assert.ok(script.includes('popup_blocked'), 'blocked WhatsApp popups need an explicit status');
 
-  const dataLayerPushes = [...script.matchAll(/dataLayer\.push\s*\(\s*\{([\s\S]*?)\}\s*\)/g)].map((match) => match[1]);
-  for (const payload of dataLayerPushes) {
+  const trackedPayloads = [...script.matchAll(/track\(\s*['"][^'"]+['"]\s*,\s*\{([\s\S]*?)\}\s*\)/g)].map((match) => match[1]);
+  assert.ok(trackedPayloads.length >= 3, 'conversion and consent events must be inspected');
+  for (const payload of trackedPayloads) {
     assert.doesNotMatch(payload, /\b(nome|telefone|email|mensagem)\s*:/i, 'analytics payload contains PII');
   }
+});
+
+test('distinguishes a successful WhatsApp popup from a blocked popup', async () => {
+  const script = await read('script.js');
+
+  assert.match(script, /window\.open\(\s*['"]['"]\s*,\s*['"]_blank['"]\s*\)/);
+  assert.match(script, /popup\.opener\s*=\s*null/);
+  assert.match(script, /popup\.location\.href\s*=\s*url/);
+  assert.doesNotMatch(script, /window\.open\(\s*url\s*,\s*['"]_blank['"]\s*,\s*['"]noopener['"]\s*\)/);
+});
+
+test('keeps a high-contrast keyboard focus indicator on form controls', async () => {
+  const css = await read('styles.css');
+
+  assert.match(css, /\.field\s+(?:input|input[^}]*)?:focus-visible[\s\S]*?outline:\s*3px\s+solid\s+#fff[\s\S]*?box-shadow:\s*0\s+0\s+0\s+6px\s+var\(--red-dark\)/i);
+  assert.doesNotMatch(css, /\.field[^{}]*:focus[^{}]*\{[^}]*outline:\s*0/i);
 });
 
 test('does not steal focus when the first-visit consent banner appears', async () => {
@@ -108,11 +125,14 @@ test('documents a GitHub-first Cloudflare Pages package', async () => {
   const readme = await read('README.md');
   const manifestRaw = await read('package-manifest.json');
   const redirects = await read('_redirects');
+  const headers = await read('_headers');
   const sitemap = await read('sitemap.xml');
 
   assert.match(readme, /Cloudflare Pages/i);
   assert.match(readme, /Build output directory:\s*`public`/i);
   assert.match(redirects, /\/\*\s+\/index\.html\s+200/);
+  assert.match(headers, /Cache-Control:\s*public,\s*max-age=86400,\s*must-revalidate/i);
+  assert.doesNotMatch(headers, /immutable/i);
   assert.match(sitemap, /<loc>https:\/\/ecogranito-verticalchao\.pages\.dev\/<\/loc>/);
   assert.ok(manifestRaw, 'package-manifest.json is required');
   const manifest = JSON.parse(manifestRaw);

@@ -77,7 +77,7 @@
     "brand_audit": null
   },
   "verification": {
-    "contract_tests": 7,
+    "contract_tests": 9,
     "contract_failures": 0,
     "desktop_viewport": "1280x900",
     "mobile_viewport": "390x844",

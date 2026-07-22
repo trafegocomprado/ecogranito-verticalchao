@@ -161,6 +161,11 @@
     },
     "piiKeys": []
   },
+  "formPopupSuccess": {
+    "status": "O WhatsApp foi aberto em uma nova aba.",
+    "fallbackHidden": true,
+    "popupBlockedEvents": 0
+  },
   "consentAccepted": {
     "stored": "granted",
     "bannerHidden": true
