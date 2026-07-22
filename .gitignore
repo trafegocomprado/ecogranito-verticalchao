@@ -5,3 +5,4 @@ dist/
 .wrangler/
 assets/img/source/
 assets/favicon-source.png
+.gstack/
