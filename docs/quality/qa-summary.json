@@ -182,5 +182,22 @@
   "consentReload": {
     "bannerVisible": false
   },
-  "referenceCaptured": true
+  "referenceCaptured": true,
+  "production": {
+    "url": "https://ecogranito-verticalchao.pages.dev/",
+    "httpStatus": 200,
+    "brokenImages": [],
+    "failedLocalRequests": [],
+    "consoleErrors": [],
+    "hamburgerCount": 0,
+    "mobileGalleryHeights": [273, 273, 273],
+    "legacyPhonePresent": false,
+    "trackingIds": ["GTM-M7GS29F", "G-L2NNH9T18X", "AW-956995439"],
+    "lighthouse": {
+      "performance": 99,
+      "accessibility": 100,
+      "bestPractices": 100,
+      "seo": 100
+    }
+  }
 }

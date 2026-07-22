@@ -77,7 +77,7 @@
     "brand_audit": null
   },
   "verification": {
-    "contract_tests": 9,
+    "contract_tests": 10,
     "contract_failures": 0,
     "desktop_viewport": "1280x900",
     "mobile_viewport": "390x844",
@@ -90,12 +90,22 @@
     "broken_local_assets": 0,
     "console_errors": 0,
     "tracking_pii_keys": 0,
+    "lighthouse": {
+      "performance": 99,
+      "accessibility": 100,
+      "best_practices": 100,
+      "seo": 100,
+      "lcp_ms": 1993,
+      "cls": 0.0171
+    },
     "qa_summary": "docs/quality/qa-summary.json"
   },
   "deployment_package": {
     "type": "github-cloudflare-pages",
     "path": ".",
     "public_dir": "public",
+    "production_url": "https://ecogranito-verticalchao.pages.dev/",
+    "github_url": "https://github.com/trafegocomprado/ecogranito-verticalchao",
     "ready_for_github": true,
     "cloudflare": {
       "build_command": "npm run build",
