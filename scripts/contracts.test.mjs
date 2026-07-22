@@ -70,6 +70,9 @@ test('builds a private WhatsApp form without sending personal data to analytics'
   assert.ok(script.includes('cta_clicked'), 'CTA conversion event is required');
   assert.ok(script.includes('encodeURIComponent'), 'WhatsApp message must be URL encoded');
   assert.ok(script.includes('5531996848477'), 'form must target the commercial WhatsApp');
+  assert.ok(html.includes('data-form-status'), 'form needs an accessible status region');
+  assert.ok(html.includes('data-form-fallback'), 'form needs a fallback link when popups are blocked');
+  assert.ok(script.includes('popup_blocked'), 'blocked WhatsApp popups need an explicit status');
 
   const dataLayerPushes = [...script.matchAll(/dataLayer\.push\s*\(\s*\{([\s\S]*?)\}\s*\)/g)].map((match) => match[1]);
   for (const payload of dataLayerPushes) {

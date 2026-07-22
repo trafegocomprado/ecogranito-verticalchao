@@ -29,6 +29,8 @@
 
   const form = document.querySelector('[data-whatsapp-form]');
   if (form) {
+    const formStatus = form.querySelector('[data-form-status]');
+    const formFallback = form.querySelector('[data-form-fallback]');
     const fields = {
       nome: form.elements.nome,
       telefone: form.elements.telefone,
@@ -83,7 +85,19 @@
         form_name: 'ecogranito_orcamento',
         contact_method: 'whatsapp',
       });
-      window.open(url, '_blank', 'noopener');
+      const popup = window.open(url, '_blank', 'noopener');
+      if (popup) {
+        formStatus.textContent = 'O WhatsApp foi aberto em uma nova aba.';
+        formFallback.hidden = true;
+      } else {
+        formStatus.textContent = 'O navegador bloqueou a nova aba. Use o link abaixo para continuar.';
+        formFallback.href = url;
+        formFallback.hidden = false;
+        track('popup_blocked', {
+          form_name: 'ecogranito_orcamento',
+          contact_method: 'whatsapp',
+        });
+      }
     });
   }
 

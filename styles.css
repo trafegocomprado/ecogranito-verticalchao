@@ -118,6 +118,9 @@ p{margin:0}
 .field-error{min-height:18px;color:#a70f15;font-size:11px;line-height:1.35}
 .form-submit{width:100%;margin-top:2px}
 .form-note{color:var(--muted);font-size:11px;text-align:center}
+.form-status{min-height:20px;color:var(--ink);font-size:12px;text-align:center}
+.form-fallback{display:inline-flex;align-items:center;justify-content:center;min-height:44px;color:var(--red-dark);font-size:13px;font-weight:600;text-decoration:underline;text-underline-offset:4px}
+.form-fallback[hidden]{display:none}
 .site-footer{background:#0f1113;color:rgba(255,255,255,.68);padding:76px 0 22px}
 .footer-grid{display:grid;grid-template-columns:1.1fr 1.4fr .8fr .8fr;gap:52px;padding-bottom:55px}
 .footer-brand .brand{color:var(--white)}
