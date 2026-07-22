@@ -12,6 +12,17 @@ const read = async (file) => {
 
 const compact = (value) => value.replace(/[\s()-]/g, '');
 
+const luminance = (hex) => {
+  const channels = hex.match(/[a-f\d]{2}/gi).map((value) => Number.parseInt(value, 16) / 255);
+  const linear = channels.map((value) => value <= 0.03928 ? value / 12.92 : ((value + 0.055) / 1.055) ** 2.4);
+  return 0.2126 * linear[0] + 0.7152 * linear[1] + 0.0722 * linear[2];
+};
+
+const contrast = (foreground, background) => {
+  const values = [luminance(foreground), luminance(background)];
+  return (Math.max(...values) + 0.05) / (Math.min(...values) + 0.05);
+};
+
 test('publishes the approved Ecogranito identity and contacts', async () => {
   const html = await read('index.html');
   const script = await read('script.js');
@@ -95,6 +106,18 @@ test('keeps a high-contrast keyboard focus indicator on form controls', async ()
 
   assert.match(css, /\.field\s+(?:input|input[^}]*)?:focus-visible[\s\S]*?outline:\s*3px\s+solid\s+#fff[\s\S]*?box-shadow:\s*0\s+0\s+0\s+6px\s+var\(--red-dark\)/i);
   assert.doesNotMatch(css, /\.field[^{}]*:focus[^{}]*\{[^}]*outline:\s*0/i);
+});
+
+test('keeps brand-red text and controls at WCAG AA contrast', async () => {
+  const css = await read('styles.css');
+  const brandRed = css.match(/--red:(#[a-f\d]{6})/i)?.[1];
+  const darkSurface = css.match(/--ink:(#[a-f\d]{6})/i)?.[1];
+  const processRed = css.match(/\.process-card>span\{color:(#[a-f\d]{6})/i)?.[1];
+
+  assert.ok(brandRed && darkSurface && processRed, 'semantic contrast colors are required');
+  assert.ok(contrast(brandRed, '#ffffff') >= 4.5, 'white button text needs AA contrast');
+  assert.ok(contrast(brandRed, '#fbf8f1') >= 4.5, 'red labels on paper need AA contrast');
+  assert.ok(contrast(processRed, darkSurface) >= 4.5, 'red process labels on dark panels need AA contrast');
 });
 
 test('does not steal focus when the first-visit consent banner appears', async () => {
