@@ -72,33 +72,11 @@ test('keeps the mobile layout simple and the official gallery compact', async ()
   assert.doesNotMatch(css, /transition\s*:\s*all/i);
 });
 
-test('builds a private WhatsApp form without sending personal data to analytics', async () => {
-  const html = await read('index.html');
+test('keeps independent CTA and consent analytics free from personal form data', async () => {
   const script = await read('script.js');
-
-  assert.ok(html.includes('data-whatsapp-form'), 'WhatsApp form is required');
-  assert.ok(script.includes('form_submitted'), 'form conversion event is required');
-  assert.ok(script.includes('cta_clicked'), 'CTA conversion event is required');
-  assert.ok(script.includes('encodeURIComponent'), 'WhatsApp message must be URL encoded');
-  assert.ok(script.includes('5531996848477'), 'form must target the commercial WhatsApp');
-  assert.ok(html.includes('data-form-status'), 'form needs an accessible status region');
-  assert.ok(html.includes('data-form-fallback'), 'form needs a fallback link when popups are blocked');
-  assert.ok(script.includes('popup_blocked'), 'blocked WhatsApp popups need an explicit status');
-
   const trackedPayloads = [...script.matchAll(/track\(\s*['"][^'"]+['"]\s*,\s*\{([\s\S]*?)\}\s*\)/g)].map((match) => match[1]);
-  assert.ok(trackedPayloads.length >= 3, 'conversion and consent events must be inspected');
-  for (const payload of trackedPayloads) {
-    assert.doesNotMatch(payload, /\b(nome|telefone|email|mensagem)\s*:/i, 'analytics payload contains PII');
-  }
-});
-
-test('distinguishes a successful WhatsApp popup from a blocked popup', async () => {
-  const script = await read('script.js');
-
-  assert.match(script, /window\.open\(\s*['"]['"]\s*,\s*['"]_blank['"]\s*\)/);
-  assert.match(script, /popup\.opener\s*=\s*null/);
-  assert.match(script, /popup\.location\.href\s*=\s*url/);
-  assert.doesNotMatch(script, /window\.open\(\s*url\s*,\s*['"]_blank['"]\s*,\s*['"]noopener['"]\s*\)/);
+  assert.ok(trackedPayloads.length >= 2);
+  for (const payload of trackedPayloads) assert.doesNotMatch(payload, /\b(nome|telefone|email|mensagem)\s*:/i);
 });
 
 test('keeps a high-contrast keyboard focus indicator on form controls', async () => {

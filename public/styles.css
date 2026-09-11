@@ -153,3 +153,17 @@ p{margin:0}
 @media (max-width:680px){.hero-actions{align-items:stretch;flex-direction:column;gap:14px}.hero-actions .button{width:100%}.text-link{justify-content:center}.trust-grid{grid-template-columns:1fr}.trust-grid article,.trust-grid article:first-child,.trust-grid article:nth-child(3){border-left:1px solid var(--line)}.process-grid{grid-template-columns:1fr}.process-card{min-height:0}.process-card h3{margin-top:30px}.gallery{display:grid;grid-template-columns:1fr;gap:14px}.gallery figure{grid-column:auto;min-height:0;aspect-ratio:4 / 3;transform:none}.gallery figure:nth-child(2){transform:none}.gallery img{object-position:center 42%}.testimonial-card,.testimonial-card-wide{min-height:0;padding:28px}.form-row{grid-template-columns:1fr}.footer-grid{grid-template-columns:1fr;gap:36px}.footer-bottom{align-items:flex-start;flex-direction:column}.section-heading h2{font-size:39px}}
 @media (max-width:430px){:root{--shell:calc(100% - 26px)}.brand{gap:9px;font-size:18px}.brand img{width:39px;height:39px}.hero{min-height:667px}.hero-grid{min-height:667px;padding-top:104px;padding-bottom:32px}.hero h1{font-size:40px}.trust-grid article{padding:28px 22px}.section{padding:72px 0}.section-heading h2{font-size:36px}.contact-form{margin-inline:-5px;padding:22px}.consent-actions{display:grid;grid-template-columns:1fr 1fr}}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+
+/* Email contact form */
+.contact-honeypot { position: absolute !important; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }
+.contact-security, .contact-fallback, [data-contact-form] > noscript { grid-column: 1 / -1; min-width: 0; }
+.contact-security { min-height: 0; }
+.contact-fallback { margin: 0; font-size: .875rem; line-height: 1.5; overflow-wrap: anywhere; }
+.contact-fallback a { color: inherit; text-decoration: underline; }
+[data-contact-form] button:disabled { opacity: .65; cursor: not-allowed; }
+[data-form-status][data-state="error"] { color: #a52b1a; }
+[data-form-status][data-state="success"] { color: #176437; }
+
+@media (max-width: 680px) {
+  .floating-whatsapp[data-contact-visible="true"], .whatsapp-float[data-contact-visible="true"], [data-whatsapp-widget][data-contact-visible="true"] { visibility: hidden; pointer-events: none; }
+}

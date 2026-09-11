@@ -49,6 +49,8 @@ async function preflightSources() {
     ["index.html", "file"],
     ["styles.css", "file"],
     ["script.js", "file"],
+    ["contact-config.js", "file"],
+    ["contact-form.js", "file"],
     ["robots.txt", "file"],
     ["sitemap.xml", "file"],
     ["_headers", "file"],

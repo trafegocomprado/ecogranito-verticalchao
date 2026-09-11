@@ -27,82 +27,6 @@
     });
   });
 
-  const form = document.querySelector('[data-whatsapp-form]');
-  if (form) {
-    const formStatus = form.querySelector('[data-form-status]');
-    const formFallback = form.querySelector('[data-form-fallback]');
-    const fields = {
-      nome: form.elements.nome,
-      telefone: form.elements.telefone,
-      email: form.elements.email,
-      assunto: form.elements.assunto,
-      mensagem: form.elements.mensagem,
-    };
-
-    const errorFor = (name) => form.querySelector(`[data-error-for="${name}"]`);
-    const setError = (name, message) => {
-      const field = fields[name];
-      const error = errorFor(name);
-      field.setAttribute('aria-invalid', message ? 'true' : 'false');
-      if (error) error.textContent = message;
-    };
-    const validate = () => {
-      const values = Object.fromEntries(Object.entries(fields).map(([name, field]) => [name, field.value.trim()]));
-      const errors = {
-        nome: values.nome ? '' : 'Informe seu nome.',
-        telefone: values.telefone.replace(/\D/g, '').length >= 10 ? '' : 'Informe um telefone com DDD.',
-        email: !values.email || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(values.email) ? '' : 'Confira o endereço de e-mail.',
-        assunto: values.assunto ? '' : 'Selecione um assunto.',
-        mensagem: values.mensagem ? '' : 'Conte o que precisa ser avaliado.',
-      };
-      Object.entries(errors).forEach(([name, message]) => setError(name, message));
-      const firstInvalid = Object.keys(errors).find((name) => errors[name]);
-      if (firstInvalid) fields[firstInvalid].focus();
-      return { valid: !firstInvalid, values };
-    };
-
-    Object.keys(fields).forEach((name) => {
-      fields[name].addEventListener('input', () => setError(name, ''));
-      fields[name].addEventListener('change', () => setError(name, ''));
-    });
-
-    form.addEventListener('submit', (event) => {
-      event.preventDefault();
-      const { valid, values } = validate();
-      if (!valid) return;
-
-      const lines = [
-        'Olá, preciso de um atendimento!',
-        '',
-        `Nome: ${values.nome}`,
-        `Telefone: ${values.telefone}`,
-        values.email ? `E-mail: ${values.email}` : '',
-        `Assunto: ${values.assunto}`,
-        `Mensagem: ${values.mensagem}`,
-      ].filter(Boolean);
-      const url = `https://api.whatsapp.com/send?phone=5531996848477&text=${encodeURIComponent(lines.join('\n'))}`;
-      track('form_submitted', {
-        form_name: 'ecogranito_orcamento',
-        contact_method: 'whatsapp',
-      });
-      const popup = window.open('', '_blank');
-      if (popup) {
-        popup.opener = null;
-        popup.location.href = url;
-        formStatus.textContent = 'O WhatsApp foi aberto em uma nova aba.';
-        formFallback.hidden = true;
-      } else {
-        formStatus.textContent = 'O navegador bloqueou a nova aba. Use o link abaixo para continuar.';
-        formFallback.href = url;
-        formFallback.hidden = false;
-        track('popup_blocked', {
-          form_name: 'ecogranito_orcamento',
-          contact_method: 'whatsapp',
-        });
-      }
-    });
-  }
-
   const banner = document.querySelector('[data-consent-banner]');
   const accept = document.querySelector('[data-consent-accept]');
   const reject = document.querySelector('[data-consent-reject]');
@@ -147,4 +71,12 @@
     showBanner({ focus: true });
   }));
   if (!readConsent()) showBanner({ focus: false });
+  // Keep the floating contact control clear of the mobile email form.
+  const contactForm = document.querySelector('[data-contact-form]');
+  const floatingWhatsApp = document.querySelector('[data-whatsapp-widget], .floating-whatsapp, .whatsapp-float');
+  if (contactForm && floatingWhatsApp && typeof IntersectionObserver === 'function') {
+    new IntersectionObserver(([entry]) => {
+      floatingWhatsApp.dataset.contactVisible = entry.isIntersecting ? 'true' : 'false';
+    }).observe(contactForm);
+  }
 })();

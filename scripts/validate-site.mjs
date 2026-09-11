@@ -19,7 +19,10 @@ for (const required of [
   '(31) 98712-2106',
   'tel:+5531987122106',
   'https://api.whatsapp.com/send?phone=5531996848477&amp;text=Ol%C3%A1,%20preciso%20de%20um%20atendimento!',
-  'data-whatsapp-form',
+  'data-contact-form',
+  'contact-config.js',
+  'contact-form.js',
+  'data-form-name="ecogranito_orcamento"',
   'HomeAndConstructionBusiness',
   'data-consent-manage',
 ]) {
@@ -57,7 +60,6 @@ for (const signal of ['analytics_storage', 'ad_storage', 'ad_user_data', 'ad_per
 
 for (const [event, metadata] of [
   ['cta_clicked', 'cta_location'],
-  ['form_submitted', "form_name: 'ecogranito_orcamento'"],
 ]) {
   if (!javascript.includes(`track('${event}'`)) fail(`missing event: ${event}`);
   if (!javascript.includes(metadata)) fail(`missing event metadata: ${metadata}`);

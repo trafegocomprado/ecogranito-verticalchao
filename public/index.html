@@ -214,24 +214,26 @@
           <div class="contact-copy">
             <p class="eyebrow">Orçamento de aplicação de Ecogranito</p>
             <h2>Conte o que precisa ser avaliado.</h2>
-            <p>Informe o tipo de edifício, a área aproximada e o estado atual da fachada. O formulário monta uma mensagem para o WhatsApp do atendimento comercial.</p>
+            <p>Informe o tipo de edifício, a área aproximada e o estado atual da fachada. Seu pedido será enviado por e-mail ao atendimento comercial.</p>
             <div class="contact-direct">
               <a href="tel:+5531996848477" data-track-cta data-cta-location="contact" data-contact-method="phone"><span>Contato comercial</span><strong>(31) 99684-8477</strong></a>
               <a href="mailto:verticalchao@gmail.com"><span>E-mail</span><strong>verticalchao@gmail.com</strong></a>
             </div>
           </div>
-          <form class="contact-form" data-whatsapp-form novalidate>
-            <div class="field"><label for="nome">Seu nome</label><input id="nome" name="nome" autocomplete="name" required aria-describedby="nome-error"><span class="field-error" id="nome-error" data-error-for="nome"></span></div>
+          <form class="contact-form" data-contact-form data-form-name="ecogranito_orcamento" method="post" action="#orcamento" novalidate>
+            <div class="field"><label for="nome">Seu nome</label><input id="nome" name="nome" minlength="2" maxlength="120" autocomplete="name" required aria-describedby="nome-error"><span class="field-error" id="nome-error" data-error-for="nome"></span></div>
             <div class="form-row">
-              <div class="field"><label for="telefone">Seu telefone</label><input id="telefone" name="telefone" type="tel" inputmode="tel" autocomplete="tel" required aria-describedby="telefone-error"><span class="field-error" id="telefone-error" data-error-for="telefone"></span></div>
-              <div class="field"><label for="email">E-mail <small>(opcional)</small></label><input id="email" name="email" type="email" autocomplete="email" aria-describedby="email-error"><span class="field-error" id="email-error" data-error-for="email"></span></div>
+              <div class="field"><label for="telefone">Telefone <span>(opcional)</span></label><input id="telefone" name="telefone" type="tel" inputmode="tel" autocomplete="tel" aria-describedby="telefone-error"><span class="field-error" id="telefone-error" data-error-for="telefone"></span></div>
+              <div class="field"><label for="email">Seu e-mail</label><input id="email" name="email" type="email" autocomplete="email" aria-describedby="email-error" required><span class="field-error" id="email-error" data-error-for="email"></span></div>
             </div>
-            <div class="field"><label for="assunto">Assunto</label><select id="assunto" name="assunto" required aria-describedby="assunto-error"><option value="">Selecione</option><option>Aplicação de Ecogranito</option><option>Avaliação da fachada</option><option>Outro serviço predial</option></select><span class="field-error" id="assunto-error" data-error-for="assunto"></span></div>
+            <div class="field"><label for="servico">Serviço</label><select id="servico" name="servico" required aria-describedby="servico-error"><option value="">Selecione</option><option>Aplicação de Ecogranito</option><option>Avaliação da fachada</option><option>Outro serviço predial</option></select><span class="field-error" id="servico-error" data-error-for="servico"></span></div>
             <div class="field"><label for="mensagem">Mensagem</label><textarea id="mensagem" name="mensagem" rows="4" required aria-describedby="mensagem-error" placeholder="Conte um pouco sobre o edifício e a fachada."></textarea><span class="field-error" id="mensagem-error" data-error-for="mensagem"></span></div>
-            <button class="button form-submit" type="submit">Enviar pelo WhatsApp <span aria-hidden="true">↗</span></button>
-            <p class="form-note">Ao enviar, você abre uma conversa com o atendimento comercial no WhatsApp.</p>
+            <div class="contact-honeypot" aria-hidden="true"><label for="website">Deixe este campo em branco</label><input id="website" name="website" type="text" tabindex="-1" autocomplete="off"></div>
+            <div class="contact-security" data-turnstile aria-label="Verificação de segurança"></div>
+            <button class="button form-submit" type="submit" disabled>Enviar pedido por e-mail</button>
             <p class="form-status" data-form-status role="status" aria-live="polite"></p>
-            <a class="form-fallback" data-form-fallback href="#" target="_blank" rel="noopener" hidden>Abrir o WhatsApp manualmente</a>
+            <p class="contact-fallback" data-contact-fallback>Se preferir, escreva para <a href="mailto:verticalchao@gmail.com">verticalchao@gmail.com</a>.</p>
+            <noscript><p class="contact-fallback">Ative o JavaScript para usar o formulário ou envie seu pedido para <a href="mailto:verticalchao@gmail.com">verticalchao@gmail.com</a>.</p></noscript>
           </form>
         </div>
       </section>
@@ -240,7 +242,7 @@
     <footer class="site-footer">
       <div class="shell footer-grid">
         <div class="footer-brand"><a class="brand" href="#inicio"><img src="assets/img/webp/logo.webp" width="58" height="56" alt=""><span>Vertical Chão</span></a><p>Alpinismo Predial</p></div>
-        <div><h2>Endereço</h2><address>Av. Deputado Ulisses Guimarães, 385<br>Bairro Felixlândia, Justinópolis – MG</address><ul class="footer-meta"><li>CNPJ: 22.195.936/0001.58</li><li>Responsável técnico: Ademar R. da Silva</li><li>CFT/BR: 141201165-5</li></ul></div>
+        <div><h2>Endereço</h2><address>Av. Deputado Ulisses Guimarães, 385<br>Bairro Felixlândia, Justinópolis – MG</address><ul class="footer-meta"><li>CNPJ: 22.195.936/0001.58</li><li>Responsável técnico: Ademar R. da Silva</li><li>Registro: 141201165-5</li></ul></div>
         <div><h2>Telefones</h2><ul><li><a href="tel:+5531996848477">(31) 99684-8477</a></li><li><a href="tel:+5531987122106">(31) 98712-2106</a></li><li><a href="https://api.whatsapp.com/send?phone=5531996848477&amp;text=Ol%C3%A1,%20preciso%20de%20um%20atendimento!" target="_blank" rel="noopener" data-track-cta data-cta-location="footer" data-contact-method="whatsapp">Chat via WhatsApp</a></li></ul></div>
         <div><h2>Atalhos</h2><ul><li><a href="#servico">O serviço</a></li><li><a href="#processo">Como trabalhamos</a></li><li><a href="#obras">Obras</a></li><li><a href="#depoimentos">Depoimentos</a></li><li><a href="#orcamento">Orçamento</a></li></ul></div>
       </div>
@@ -249,7 +251,7 @@
 
     <a class="whatsapp-float" href="https://api.whatsapp.com/send?phone=5531996848477&amp;text=Ol%C3%A1,%20preciso%20de%20um%20atendimento!" target="_blank" rel="noopener" aria-label="Falar pelo WhatsApp" data-track-cta data-cta-location="floating_widget" data-contact-method="whatsapp">
       <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3a13 13 0 0 0-11.2 19.6L3 29l6.6-1.7A13 13 0 1 0 16 3Zm0 23.7c-2 0-3.8-.5-5.5-1.5l-.4-.2-3.9 1 1-3.8-.3-.4A10.7 10.7 0 1 1 16 26.7Zm5.9-8c-.3-.2-1.9-1-2.2-1.1-.3-.1-.5-.2-.8.2l-1 1.2c-.2.3-.4.3-.7.1a8.8 8.8 0 0 1-2.6-1.6 9.7 9.7 0 0 1-1.8-2.3c-.2-.3 0-.5.1-.6l.5-.6.3-.5c.1-.2 0-.4 0-.6l-1-2.3c-.2-.6-.5-.5-.8-.5h-.7c-.2 0-.6.1-.9.4-.3.4-1.2 1.2-1.2 2.9s1.2 3.3 1.4 3.5c.2.2 2.4 3.7 5.8 5.2.8.4 1.4.6 1.9.7.8.3 1.6.3 2.2.2.7-.1 1.9-.8 2.2-1.5.3-.7.3-1.4.2-1.5-.1-.2-.3-.3-.7-.5Z"/></svg>
-      <span>WhatsApp</span>
+      <span>Atendimento</span>
     </a>
 
     <aside class="consent-banner" data-consent-banner aria-labelledby="consent-title" aria-live="polite" hidden>
@@ -258,5 +260,7 @@
     </aside>
 
     <script src="script.js" defer></script>
+    <script src="contact-config.js" defer></script>
+    <script src="contact-form.js" defer></script>
   </body>
 </html>

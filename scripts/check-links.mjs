@@ -11,6 +11,8 @@ const publishRootFiles = new Set([
   "index.html",
   "styles.css",
   "script.js",
+  "contact-config.js",
+  "contact-form.js",
   "robots.txt",
   "_headers",
 ]);
