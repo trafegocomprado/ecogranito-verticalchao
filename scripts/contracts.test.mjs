@@ -31,7 +31,7 @@ test('publishes the approved Ecogranito identity and contacts', async () => {
   assert.match(html, /<h1\b/i, 'the page needs one primary heading');
   assert.equal((html.match(/<h1\b/gi) ?? []).length, 1, 'the page needs exactly one h1');
   assert.match(html, /rel=["']canonical["'][^>]+https:\/\/ecogranito-verticalchao\.pages\.dev\//i);
-  assert.ok(compact(combined).includes('5531996848477'), 'commercial phone is required');
+  assert.ok(compact(combined).includes('5531933011440'), 'commercial phone is required');
   assert.ok(compact(combined).includes('5531987122106'), 'secondary footer phone is required');
 
   for (const forbidden of ['5531994711393', '99471-1393', 'Edvaldo', 'menu-toggle', 'data-menu-toggle']) {

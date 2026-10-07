@@ -40,8 +40,8 @@ Depois de configurar o domínio personalizado, atualize a URL canônica e o `og:
 
 ## Contatos e tracking
 
-- Comercial: `(31) 99684-8477`
-- Telefone secundário no rodapé: `(31) 98712-2106`
+- Comercial: `(31) 93301-1440`
+- Engenharia Ademar (rodapé): `(31) 98712-2106`
 - Google Tag Manager: `GTM-M7GS29F`
 - Google Analytics 4: `G-L2NNH9T18X`
 - Google Ads: `AW-956995439`

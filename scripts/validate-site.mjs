@@ -14,11 +14,11 @@ const fail = (message) => failures.push(message);
 const count = (value, pattern) => [...value.matchAll(pattern)].length;
 
 for (const required of [
-  '(31) 99684-8477',
-  'tel:+5531996848477',
+  '(31) 93301-1440',
+  'tel:+5531933011440',
   '(31) 98712-2106',
   'tel:+5531987122106',
-  'https://api.whatsapp.com/send?phone=5531996848477&amp;text=Ol%C3%A1,%20preciso%20de%20um%20atendimento!',
+  'https://api.whatsapp.com/send?phone=5531933011440&amp;text=Ol%C3%A1,%20preciso%20de%20um%20atendimento!',
   'data-contact-form',
   'contact-config.js',
   'contact-form.js',
